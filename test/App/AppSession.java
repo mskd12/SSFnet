@@ -46,9 +46,9 @@ public class AppSession extends ProtocolSession {
   private boolean setup = false;
 
   /** How often, in seconds, to send out a packet (can be set in config). */
-  private int frequency = 1;
+  private double frequency = 1;
 
-  private int freq = 10;
+  private double freq = 10;
 
   /** Whether or not this app is a sender (generates packets). */
   private boolean sender = false;
@@ -102,13 +102,13 @@ public class AppSession extends ProtocolSession {
     // get frequency (how often to send out a packet)
     str = (String)cfg.findSingle("frequency");
     if (str != null) {
-      frequency = Integer.valueOf(str).intValue();
+      frequency = Double.parseDouble(str);
     }
 
     // get frequency (how often to send out a packet)
     str = (String)cfg.findSingle("freq");
     if (str != null) {
-      freq = Integer.valueOf(str).intValue();
+      freq = Double.parseDouble(str);
     }
 
     if (sender) {
@@ -237,7 +237,7 @@ public class AppSession extends ProtocolSession {
 
         long waittime = Net.seconds(9999999999.0);  // infinity
         if (sender) {
-          waittime = Net.seconds(1.0) * frequency;
+          waittime = (long) ( (double) Net.seconds(1.0) * frequency);
           if(frequency!=freq) {
             frequency=freq;
           }

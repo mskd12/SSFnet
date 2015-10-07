@@ -13,7 +13,7 @@ DICTIONARY = ./dictionary.dml
 
 TESTNAME = isd1
 TESTSUPPORT = isd1_networks
-RUNTIME = 1000
+RUNTIME = 550
 
 all:
 	@rm -f test-raw.out
