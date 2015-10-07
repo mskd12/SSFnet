@@ -11,9 +11,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 13] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 9] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -23,9 +23,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 15] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 12] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_specific ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -35,9 +35,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 11] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 10] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -47,9 +47,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 10] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -59,9 +59,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 9] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -71,9 +71,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 14] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -83,9 +83,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -95,9 +95,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 9] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -107,9 +107,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
+	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def
@@ -119,189 +119,9 @@ isd1_networks [
 	   AS_status boundary
 	   ospf_area 0
 	  router [ id 0 
-	   interface [ idrange [from 6 to 9] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as10 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 9] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as11 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 9] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as12 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
 	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
 	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as13 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as14 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as15 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as16 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as17 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as18 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as19 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as20 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as21 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as22 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as23 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 8] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
-	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
-	 ] #end of router-net
-	]  #end of as def
-
-	as24 [ 
-	  Net [  
-	   AS_status boundary
-	   ospf_area 0
-	  router [ id 0 
-	   interface [ idrange [from 6 to 7] ]  # interfaces to connect to neighboring ASs.
-	   _extends .dictionary.Routers.BorderRouter  ]
-	   host [ id 101  _extends .dictionary.my_cs_host ]
+	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
 	]  #end of as def

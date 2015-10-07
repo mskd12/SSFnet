@@ -199,9 +199,23 @@ my_cs_host [
   route [ dest default interface 1 ]
 ]
 
+my_cs_host_receiver [
+  graph [
+    ProtocolSession [ name ip    use SSF.OS.IP ]
+    ProtocolSession [ name test  use SSF.OS.BGP4.test.App.AppSession
+                                 receiver true  verbose true ]
+  ]
+  interface [ id 1 ]
+  route [ dest default interface 1 ]
+]
 
-
-
-
-
-
+my_cs_host_specific [
+  graph [
+    ProtocolSession [ name ip    use SSF.OS.IP ]
+    ProtocolSession [ name test  use SSF.OS.BGP4.test.App.AppSession
+                                 sender true  dest 0:101(1) frequency 500 freq 10
+                                 receiver true  verbose true ]
+  ]
+  interface [ id 1 ]
+  route [ dest default interface 1 ]
+]
