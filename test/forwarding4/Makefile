@@ -12,7 +12,7 @@ DICTIONARY = ../dictionary.dml
 
 
 TESTNAME = forwarding4
-RUNTIME = 1900
+RUNTIME = 600
 
 # ----- MAKE ALL --------------------------------------------------------------
 

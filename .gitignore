@@ -1,0 +1,16 @@
+# Java Files #
+##############
+*.class
+
+# Other files #
+###############
+Comm/
+Path/
+Policy/
+Timing/
+Util/
+Widgets/
+Players/
+doc/
+*.java
+package.html
