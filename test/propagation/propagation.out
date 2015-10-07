@@ -1,0 +1,12 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# PROPAGATION Validation Test: successful if five steps printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# 1. AS X: sent route advertisement to AS Y
+~# 2. AS Y: received advertisement from AS X
+~# 3. AS Y: sending update to AS Z
+~# 4. AS Z: received update from AS Y
+~# 5. AS Z: route added to forwarding table
+~#             *** TEST SUCCESSFUL ***
+~#

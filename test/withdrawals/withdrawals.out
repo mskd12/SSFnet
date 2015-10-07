@@ -1,0 +1,13 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# WITHDRAWALS Validation Test: successful if six steps printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# 1. AS X: bogus route being advertised to AS Y
+~# 2. AS Y: received advertisement from AS X
+~# 3. AS Y: bogus route added to routing table
+~# 4. AS X: withdrawal for bogus route being sent to AS Y
+~# 5. AS Y: received withdrawal from AS X
+~# 6. AS Y: bogus route removed from forwarding table
+~#             *** TEST SUCCESSFUL ***
+~#

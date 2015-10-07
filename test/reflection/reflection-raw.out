@@ -1,0 +1,70 @@
+
+CIDR           IP Block            b16           NHI                 
+--             0.0.0.0/25          0x00000000    
+0              0.0.0.80/29         0x00000050    1
+0/0            0.0.0.80/30         0x00000050    
+1              0.0.0.72/29         0x00000048    2
+1/0            0.0.0.72/30         0x00000048    
+2              0.0.0.64/29         0x00000040    3
+2/0            0.0.0.64/30         0x00000040    
+3              0.0.0.0/26          0x00000000    4
+3/0            0.0.0.44/30         0x0000002c    4:1(1) 4:2(1) 
+3/1            0.0.0.40/30         0x00000028    4:2(2) 4:3(1) 
+3/2            0.0.0.36/30         0x00000024    4:2(3) 4:4(1) 
+3/3            0.0.0.32/30         0x00000020    4:2(4) 4:6(1) 
+3/4            0.0.0.28/30         0x0000001c    4:4(2) 4:5(1) 
+3/5            0.0.0.24/30         0x00000018    4:4(3) 4:6(2) 
+3/6            0.0.0.20/30         0x00000014    
+3/7            0.0.0.16/30         0x00000010    
+3/8            0.0.0.12/30         0x0000000c    
+3/9            0.0.0.8/30          0x00000008    
+3/10           0.0.0.4/30          0x00000004    
+3/11           0.0.0.0/30          0x00000000    
+4              0.0.0.96/30         0x00000060    1:1(1) 4:1(2) 
+5              0.0.0.92/30         0x0000005c    2:1(1) 4:3(2) 
+6              0.0.0.88/30         0x00000058    3:1(1) 4:5(2) 
+
+NHI Addr            CIDR Level          IP Address Block    % util    
+--                  --                  0.0.0.0/25          79.6875   
+1                   0                   0.0.0.80/29         75.0      
+2                   1                   0.0.0.72/29         75.0      
+3                   2                   0.0.0.64/29         75.0      
+4                   3                   0.0.0.0/26          78.125    
+
+** 		 Using specified 1.0ns clock resolution
+
+
+--- Phase I: construct table of routers and hosts
+
+
+--- Phase II: connect Point-To-Point links
+
+
+--- Phase III: add static routes
+## Net config: 9 routers and hosts
+## Elapsed time: 0.702 seconds
+** Running for 300000000000 clock ticks (== 300.0 seconds sim time)
+----------------------------------------------------------------------
+|	Raceway SSF 1.0b09 (2 May 2001)
+|	 Proprietary Internal Development Release
+|	(c)2000,2001 Renesys Corporation
+----------------------------------------------------------------------
+
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# REFLECTION Validation Test:  successful if 7 lines plus "TEST
+~#                              SUCCESSFUL" message printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# AS X: advertised route
+~# RR1:  reflecting route
+~# RR1:  reflecting route
+~# RR1:  reflecting route
+~# RR2:  reflecting route
+~# AS Y: received route advertisement
+~# AS Z: received route advertisement
+~#             *** TEST SUCCESSFUL ***
+~#
+----------------------------------------------------------------------
+| 1 timelines, 5 barriers, 6370 events, 893 ms, 11 Kevt/s
+----------------------------------------------------------------------

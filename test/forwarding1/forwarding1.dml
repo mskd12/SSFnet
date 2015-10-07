@@ -1,0 +1,173 @@
+# 
+# forwarding1.dml
+#
+# This network consists of 32 autonomous systems, each represented by
+# a single router with a single host attached.  (This is so inter-
+# domain routing can be tested without the need for intra-domain
+# routing.)  It was built with a hierarchical layout, and then a
+# couple of additional links were added to make it more interesting.
+# In the center is a backbone network consisting of five autonomous
+# systems.  Three of those ASes have other ASes connected below them
+# in the hierarchy, and it continues in this fashion a few more layers
+# down to leaf ASes.
+#
+
+_schema [ _find .schemas.Net ]
+
+Net [  # the all-encompassing Net
+
+  frequency 1000000000   # nanosecond simulation frequency
+
+  bgpoptions [
+    validation_test 5      # prints messages associated with this test
+  ]
+
+  Net [  # a Net to encapsulate the backbone ASes
+    id 0
+
+    # "level 0" ASes
+    Net [ id 0 _extends .my_simple_cs_AS ]
+    Net [ id 1 _extends .my_simple_cs_AS ]
+    Net [ id 2 _extends .my_simple_cs_AS ]
+    Net [ id 3 _extends .my_simple_cs_AS ]
+    Net [ id 4 _extends .my_simple_cs_AS ]
+
+    link [ attach 0:1(2) attach 1:1(2) delay 0.001 ]
+    link [ attach 0:1(3) attach 4:1(2) delay 0.001 ]
+    link [ attach 1:1(3) attach 2:1(2) delay 0.001 ]
+    link [ attach 2:1(3) attach 3:1(2) delay 0.001 ]
+    link [ attach 2:1(4) attach 4:1(3) delay 0.001 ]
+    link [ attach 3:1(3) attach 4:1(4) delay 0.001 ]
+
+  ] # end backbone Net
+
+
+  Net [  # this Net encapsulates the part of the hierarchy
+         # hanging off of backbone AS Net 1 ("subnet" 1)
+    id 1
+
+    # "level 1" ASes in subnet 1
+    Net [ id  0 _extends .my_simple_cs_AS ]
+    # "level 2" ASes
+    Net [ id  1 _extends .my_simple_cs_AS ]
+    Net [ id  2 _extends .my_simple_cs_AS ]
+    Net [ id  3 _extends .my_simple_cs_AS ]
+    # "level 3" ASes
+    Net [ id  4 _extends .my_simple_cs_AS ]
+    Net [ id  5 _extends .my_simple_cs_AS ]
+    Net [ id  6 _extends .my_simple_cs_AS ]
+    Net [ id  7 _extends .my_simple_cs_AS ]
+    Net [ id  8 _extends .my_simple_cs_AS ]
+    # "level 4" ASes
+    Net [ id  9 _extends .my_simple_cs_AS ]
+    # "level 5" ASes
+    Net [ id 10 _extends .my_simple_cs_AS ]
+    Net [ id 11 _extends .my_simple_cs_AS ]
+    Net [ id 12 _extends .my_simple_cs_AS ]
+
+    link [ attach 0:1(3) attach 1:1(2) delay 0.01 ]
+    link [ attach 0:1(4) attach 2:1(2) delay 0.01 ]
+    link [ attach 0:1(5) attach 3:1(2) delay 0.01 ]
+
+    link [ attach 1:1(3) attach 4:1(2) delay 0.01 ]
+    link [ attach 1:1(4) attach 5:1(2) delay 0.01 ]
+    link [ attach 1:1(5) attach 6:1(2) delay 0.01 ]
+    link [ attach 3:1(3) attach 7:1(2) delay 0.01 ]
+    link [ attach 3:1(4) attach 8:1(2) delay 0.01 ]
+    link [ attach 3:1(5) attach 9:1(2) delay 0.01 ]
+
+    link [ attach 9:1(3) attach 10:1(2) delay 0.01 ]
+    link [ attach 9:1(4) attach 11:1(2) delay 0.01 ]
+    link [ attach 9:1(5) attach 12:1(2) delay 0.01 ]
+
+  ] # end "subnet" 1
+
+  # link attaching backbone and subnet 1
+  link [ attach 0:1:1(4) attach 1:0:1(2) delay 0.005 ]
+
+
+  Net [  # this Net encapsulates the part of the hierarchy
+         # hanging off of backbone AS Net 3 ("subnet" 2)
+    id 2
+
+    # "level 1" ASes in subnet 2
+    Net [ id 0 _extends .my_simple_cs_AS ]
+    Net [ id 1 _extends .my_simple_cs_AS ]
+    # "level 2" ASes
+    Net [ id 2 _extends .my_simple_cs_AS ]
+    Net [ id 3 _extends .my_simple_cs_AS ]
+    Net [ id 4 _extends .my_simple_cs_AS ]
+
+    link [ attach 1:1(3) attach 2:1(2) delay 0.01 ]
+    link [ attach 1:1(4) attach 3:1(2) delay 0.01 ]
+    link [ attach 1:1(5) attach 4:1(2) delay 0.01 ]
+
+  ] # end "subnet" 2
+
+  # links attaching backbone and subnet 2
+  link [ attach 0:3:1(4) attach 2:0:1(2) delay 0.005 ]
+  link [ attach 0:3:1(5) attach 2:1:1(2) delay 0.005 ]
+
+
+  Net [  # this Net encapsulates the part of the hierarchy
+         # hanging off of backbone AS Net 4 ("subnet" 3)
+    id 3
+
+    # "level 1" ASes in subnet 3
+    Net [ id 0 _extends .my_simple_cs_AS ]
+    Net [ id 1 _extends .my_simple_cs_AS ]
+    # "level 2" ASes
+    Net [ id 2 _extends .my_simple_cs_AS ]
+    Net [ id 3 _extends .my_simple_cs_AS ]
+    Net [ id 4 _extends .my_simple_cs_AS ]
+    Net [ id 5 _extends .my_simple_cs_AS ]
+    Net [ id 6 _extends .my_simple_cs_AS ]
+    # "level 3" ASes
+    Net [ id 7 _extends .my_simple_cs_AS ]
+    Net [ id 8 _extends .my_simple_cs_AS ]
+
+    link [ attach 0:1(3) attach 2:1(2) delay 0.01 ]
+    link [ attach 0:1(4) attach 3:1(2) delay 0.01 ]
+
+    link [ attach 1:1(3) attach 4:1(2) delay 0.01 ]
+    link [ attach 1:1(4) attach 5:1(2) delay 0.01 ]
+    link [ attach 1:1(5) attach 6:1(2) delay 0.01 ]
+
+    link [ attach 4:1(3) attach 7:1(2) delay 0.01 ]
+    link [ attach 4:1(4) attach 8:1(2) delay 0.01 ]
+
+  ] # end "subnet" 3
+
+  # links attaching backbone and subnet 3
+  link [ attach 0:4:1(5) attach 3:0:1(2) delay 0.005 ]
+  link [ attach 0:4:1(6) attach 3:1:1(2) delay 0.005 ]
+
+  # links between subnets
+  link [ attach 1:4:1(3)  attach 3:6:1(3) delay 0.003 ]
+  link [ attach 1:12:1(3) attach 2:0:1(3) delay 0.003 ]
+
+] # end of the all-encompassing Net
+
+
+
+# reusable parts
+
+# a simple AS with 1 router and 1 client/server host
+my_simple_cs_AS [
+  AS_status boundary
+  router [ id 1  _extends .bgprtr ]
+  host [ id 101  _extends .my_cs_host ]
+  link [ attach 1(1) attach 101(1) delay 0.001 ] # attach router to host
+]
+
+# a quiet client/server host with frequency of 100
+my_cs_host [
+  graph [
+    ProtocolSession [ name ip    use SSF.OS.IP ]
+    ProtocolSession [ name test  use SSF.OS.BGP4.test.App.AppSession
+                                 sender true  dest all  frequency 1000
+                                 receiver true  verbose false ]
+  ]
+  interface [ id 1 ]
+  route [ dest default interface 1 ]
+]

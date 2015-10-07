@@ -1,0 +1,44 @@
+
+CIDR           IP Block            b16           NHI                 
+--             0.0.0.0/27          0x00000000    
+0              0.0.0.8/29          0x00000008    1
+0/0            0.0.0.8/30          0x00000008    
+1              0.0.0.0/29          0x00000000    2
+1/0            0.0.0.0/30          0x00000000    
+2              0.0.0.16/30         0x00000010    1:1(1) 2:1(1) 
+
+NHI Addr            CIDR Level          IP Address Block    % util    
+--                  --                  0.0.0.0/27          68.75     
+1                   0                   0.0.0.8/29          75.0      
+2                   1                   0.0.0.0/29          75.0      
+
+** 		 Using specified 1.0ns clock resolution
+
+
+--- Phase I: construct table of routers and hosts
+
+
+--- Phase II: connect Point-To-Point links
+
+
+--- Phase III: add static routes
+## Net config: 2 routers and hosts
+## Elapsed time: 0.519 seconds
+** Running for 10100000000000 clock ticks (== 10100.0 seconds sim time)
+----------------------------------------------------------------------
+|	Raceway SSF 1.0b09 (2 May 2001)
+|	 Proprietary Internal Development Release
+|	(c)2000,2001 Renesys Corporation
+----------------------------------------------------------------------
+
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# KEEP-PEER Validation Test: successful if two TIME=10000 messages
+~#                                              appear below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# TIME=10000	session still exists from Y's point of view
+~# TIME=10000	session still exists from X's point of view
+----------------------------------------------------------------------
+| 1 timelines, 5 barriers, 43930 events, 1397 ms, 39 Kevt/s
+----------------------------------------------------------------------

@@ -1,0 +1,242 @@
+# 
+# reflection.dml
+#
+# Four ASes, three with a single BGP router and the other with a more complex
+# internal structure of route reflection clusters.
+#
+#
+
+_schema [ _find .schemas.Net ]
+
+Net [ # the all-encompassing Net
+  
+  frequency 1000000000   # nanosecond simulation frequency
+
+  bgpoptions [
+    validation_test 11     # prints messages associated with this test
+  ]
+
+  # ---------------------------------------------------------------- Net 1
+  # an AS with one router, plus the tester pseudo-protocol
+  Net [ # 1 router
+    id 1
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name test  use SSF.OS.BGP4.test.reflection.src.ReflectionTester
+        ]
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 4  address 1(2)  use_return_address 1(1)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ id 1 ]
+    ]
+  ]
+
+  # ---------------------------------------------------------------- Net 2
+  Net [ # 1 router
+    id 2
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 4  address 3(2)  use_return_address 1(1)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ id 1 ]
+    ]
+  ]
+
+  # ---------------------------------------------------------------- Net 3
+  Net [ # 1 router
+    id 3
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 4  address 5(2)  use_return_address 1(1)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ id 1 ]
+    ]
+  ]
+
+
+  # ---------------------------------------------------------------- Net 4
+  Net [ # 6 routers
+    id 4
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 4  address 2(1)  use_return_address 1(1)
+                     _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 1  address 1(1)  use_return_address 1(2)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 2 ] ]
+    ]
+    router [
+      id 2
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector true
+          neighbor [ as 4  address 1(1)  use_return_address 2(1)
+                     ibgp client  _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 4  address 3(1)  use_return_address 2(2)
+                     ibgp client  _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 4  address 4(1)  use_return_address 2(3)
+                     _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 4  address 6(1)  use_return_address 2(4)
+                     _extends .basic_ibgp_neighbor ] # internal
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 4 ] ]
+    ]
+    router [
+      id 3
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 4  address 2(2)  use_return_address 3(1)
+                     _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 2  address 1(1)  use_return_address 3(2)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 2 ] ]
+    ]
+    router [
+      id 4
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector true
+          neighbor [ as 4  address 2(3)  use_return_address 4(1)
+                     _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 4  address 5(1)  use_return_address 4(2)
+                     ibgp client  _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 4  address 6(2)  use_return_address 4(3)
+                     _extends .basic_ibgp_neighbor ] # internal
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 3 ] ]
+    ]
+    router [
+      id 5
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 4  address 4(2)  use_return_address 5(1)
+                     _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 3  address 1(1)  use_return_address 5(2)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 2 ] ]
+    ]
+    router [
+      id 6
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector true  # no clients in cluster, but that's OK
+          neighbor [ as 4  address 2(4)  use_return_address 6(1)
+                     _extends .basic_ibgp_neighbor ] # internal
+          neighbor [ as 4  address 4(3)  use_return_address 6(2)
+                     _extends .basic_ibgp_neighbor ] # internal
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 2 ] ]
+    ]
+
+    # router to router connections
+    link [ attach 1(1) attach 2(1) delay 0.001 ]
+    link [ attach 2(2) attach 3(1) delay 0.001 ]
+    link [ attach 2(3) attach 4(1) delay 0.001 ]
+    link [ attach 2(4) attach 6(1) delay 0.001 ]
+    link [ attach 4(2) attach 5(1) delay 0.001 ]
+    link [ attach 4(3) attach 6(2) delay 0.001 ]
+  ]
+
+  # ---------------------------------------------------------------- Net 4
+  # inter-AS links
+  link [ attach 1:1(1) attach 4:1(2) delay 0.01 ]
+  link [ attach 2:1(1) attach 4:3(2) delay 0.01 ]
+  link [ attach 3:1(1) attach 4:5(2) delay 0.03 ] # longer delay
+
+] # end of all-encompassing Net

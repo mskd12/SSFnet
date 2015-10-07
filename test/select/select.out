@@ -1,0 +1,12 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# SELECT Validation Test: successful if five steps printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# 1. AS X: sent route advertisements to AS Y and AS Z
+~# 2. AS Z: received advertisement from AS X; added route to forwarding table
+~# 3. AS Y: received advertisement from AS X and forwarded the information to Z
+~# 4. AS Z: received route info from AS Y about X
+~# 5. AS Z: rejected new route info about X (worse than other known route to X)
+~#             *** TEST SUCCESSFUL ***
+~#

@@ -1,0 +1,110 @@
+# 
+# select.dml
+#
+# A "triangle" consisting of three ASes.  Each AS has one BGP-speaking 
+# router.  Each router is connected directly to the routers in each
+# neighboring AS.
+# 
+#
+#    AS----AS
+#     \    /
+#      \  /
+#       AS
+#
+
+_schema [ _find .schemas.Net ]
+
+Net [ # the all-encompassing Net
+
+  frequency 1000000000    # nanosecond simulation resolution
+
+  bgpoptions [
+    validation_test 4      # prints messages associated with this test
+    auto_advertise false
+  ]
+
+  # The router in the first Net runs a pseudo-protocol to help with validation.
+  # The other two Nets are generic.
+  Net [
+    id 1
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name test  use SSF.OS.BGP4.test.select.src.SelectTester
+        ]
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 2  address 1(1)  use_return_address 1(1)
+                     _extends .basic_ebgp_neighbor ]
+          neighbor [ as 3  address 1(1)  use_return_address 1(2)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 2 ] ]
+    ]
+  ]
+
+  Net [
+    id 2
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 1  address 1(1)  use_return_address 1(1)
+                     _extends .basic_ebgp_neighbor ]
+          neighbor [ as 3  address 1(2)  use_return_address 1(2)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 2 ] ]
+    ]
+  ]
+
+  Net [
+    id 3
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 1  address 1(2)  use_return_address 1(1)
+                     _extends .basic_ebgp_neighbor ]
+          neighbor [ as 2  address 1(2)  use_return_address 1(2)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ idrange [ from 1 to 2 ] ]
+    ]
+  ]
+
+  link [ attach 1:1(1) attach 2:1(1) delay 0.01 ]
+  link [ attach 1:1(2) attach 3:1(1) delay 0.01 ]
+  link [ attach 2:1(2) attach 3:1(2) delay 0.01 ]
+
+] # end all-encompassing Net

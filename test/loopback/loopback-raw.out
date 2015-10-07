@@ -1,0 +1,46 @@
+
+CIDR           IP Block            b16           NHI                 
+--             0.0.0.0/26          0x00000000    
+0              0.0.0.32/29         0x00000020    1
+0/0            0.0.0.32/30         0x00000020    
+1              0.0.0.0/27          0x00000000    2
+1/0            0.0.0.16/30         0x00000010    2:1(1) 2:2(1) 
+1/1            0.0.0.12/30         0x0000000c    2:2(2) 2:3(1) 
+1/2            0.0.0.8/30          0x00000008    
+1/3            0.0.0.4/30          0x00000004    
+1/4            0.0.0.0/30          0x00000000    
+2              0.0.0.40/30         0x00000028    1:1(1) 2:1(2) 
+
+NHI Addr            CIDR Level          IP Address Block    % util    
+--                  --                  0.0.0.0/26          71.875    
+1                   0                   0.0.0.32/29         75.0      
+2                   1                   0.0.0.0/27          68.75     
+
+** 		 Using specified 1.0ns clock resolution
+
+
+--- Phase I: construct table of routers and hosts
+
+
+--- Phase II: connect Point-To-Point links
+
+
+--- Phase III: add static routes
+## Net config: 4 routers and hosts
+## Elapsed time: 0.879 seconds
+** Running for 200000000000 clock ticks (== 200.0 seconds sim time)
+----------------------------------------------------------------------
+|	Raceway SSF 1.0b09 (2 May 2001)
+|	 Proprietary Internal Development Release
+|	(c)2000,2001 Renesys Corporation
+----------------------------------------------------------------------
+
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# LOOPBACK Validation Test
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# router 2:3 received advertisement for route to AS 1
+----------------------------------------------------------------------
+| 1 timelines, 5 barriers, 1936 events, 672 ms, 5 Kevt/s
+----------------------------------------------------------------------

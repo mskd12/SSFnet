@@ -1,0 +1,155 @@
+#
+# BGP4/test/dictionary.dml
+#
+# A repository of reusable simulation parts.
+#
+
+
+# =================================== ASes ================================== #
+
+# a simple AS with 1 router and 1 host
+simple_AS [
+  AS_status boundary
+  router [ id 1  _extends .bgprtr ]
+  host [ id 101  _extends .basic_host ]
+  link [ attach 1(1) attach 101(1) delay 0.001 ] # attach router to host
+]
+
+# a simple AS with 1 router and 1 client/server host
+simple_cs_AS [
+  AS_status boundary
+  router [ id 1  _extends .bgprtr ]
+  host [ id 101  _extends .cs_host ]
+  link [ attach 1(1) attach 101(1) delay 0.001 ] # attach router to host
+]
+
+# -------- simple ASes w/routers w/varying #'s of physical interfaces ------- #
+simple_AS7 [ router [ id 1  _extends .bgprtr7 ] _extends .simple_AS_no_router ]
+simple_AS6 [ router [ id 1  _extends .bgprtr6 ] _extends .simple_AS_no_router ]
+simple_AS5 [ router [ id 1  _extends .bgprtr5 ] _extends .simple_AS_no_router ]
+simple_AS4 [ router [ id 1  _extends .bgprtr4 ] _extends .simple_AS_no_router ]
+simple_AS3 [ router [ id 1  _extends .bgprtr3 ] _extends .simple_AS_no_router ]
+simple_AS2 [ router [ id 1  _extends .bgprtr2 ] _extends .simple_AS_no_router ]
+
+simple_AS_no_router [ # this is expected to be used internally only
+  AS_status boundary
+  # router [ ]
+  host [ id 101  _extends .basic_host ]
+  link [ attach 1(1) attach 101(1) delay 0.001 ] # attach router to host
+]
+
+
+# ================================= routers ================================= #
+
+# a router running BGP with 6 physical interfaces and 1 virtual interface
+bgprtr [
+  graph [  
+    ProtocolSession [ name bgp    use SSF.OS.BGP4.BGPSession  autoconfig true ]
+    ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+    ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+    ProtocolSession [ name ip     use SSF.OS.IP  debug true ]
+  ]
+  interface [ id 0  virtual true ]
+  interface [ idrange [ from 1 to 6 ] ]
+]
+
+# --------- BGP routers with varying numbers of physical interfaces --------- #
+
+bgprtr7 [ interface [ idrange [ from 1 to 7 ] ]  _extends .bgprtr0 ]
+bgprtr6 [ interface [ idrange [ from 1 to 6 ] ]  _extends .bgprtr0 ]
+bgprtr5 [ interface [ idrange [ from 1 to 5 ] ]  _extends .bgprtr0 ]
+bgprtr4 [ interface [ idrange [ from 1 to 4 ] ]  _extends .bgprtr0 ]
+bgprtr3 [ interface [ idrange [ from 1 to 3 ] ]  _extends .bgprtr0 ]
+bgprtr2 [ interface [ idrange [ from 1 to 2 ] ]  _extends .bgprtr0 ]
+bgprtr1 [ interface [ id 1  _extends .bgprtr0 ] ]
+
+bgprtr0 [ # BGP router with no specified physical interfaces (but 1 virtual)
+  graph [  
+    ProtocolSession [ name bgp    use SSF.OS.BGP4.BGPSession  autoconfig true ]
+    ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+    ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+    ProtocolSession [ name ip     use SSF.OS.IP  debug true ]
+  ]
+  interface [ id 0  virtual true ]
+]
+
+# a router running BGP and OSPF
+bgp_ospf_rtr [
+  graph [  
+    ProtocolSession [ name bgp    use SSF.OS.BGP4.BGPSession  autoconfig true ]
+    ProtocolSession [ name ospf   use SSF.OS.OSPF.sOSPF ]
+    ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+    ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+    ProtocolSession [ name ip     use SSF.OS.IP  debug true ]
+  ]
+  interface [ id 0  virtual true ]
+  interface [ idrange [ from 1 to 7 ] ]
+]
+
+# a router running BGP and OSPF and also containing a probe
+bgp_ospf_probe_rtr [
+  graph [  
+    ProtocolSession [ name bgp    use SSF.OS.BGP4.BGPSession  autoconfig true ]
+    ProtocolSession [ name ospf   use SSF.OS.OSPF.sOSPF ]
+    ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+    ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+    ProtocolSession [ name ip     use SSF.OS.IP  debug true ]
+    ProtocolSession [ name probe  use SSF.OS.ProbeSession
+                      file "probedefault.dat" stream "probedefault" ]
+  ]
+  interface [ id 0  virtual true ]
+  interface [ idrange [ from 1 to 7 ] ]
+]
+
+# ================================== hosts ================================== #
+
+# a basic host
+basic_host [
+  graph [
+    ProtocolSession [ name ip  use SSF.OS.IP ]
+  ]
+  interface [ id 1 ]
+  route [ dest default interface 1 ]
+]
+
+# a quiet client/server host with frequency of 6
+cs_host [
+  graph [
+    ProtocolSession [ name ip    use SSF.OS.IP ]
+    ProtocolSession [ name test  use SSF.OS.BGP4.test.App.AppSession
+                                 sender true  dest all  frequency 6
+                                 receiver true
+                                 verbose false ]
+  ]
+  interface [ id 1 ]
+  route [ dest default interface 1 ]
+]
+
+# =========================== BGP neighbor configs ========================== #
+
+basic_ebgp_neighbor [
+  hold_time 90
+  keep_alive_time 30
+  mrai 30
+  infilter  [ _extends .filters.permit_all ]
+  outfilter [ _extends .filters.permit_all ]
+]
+
+basic_ibgp_neighbor [
+  hold_time 90
+  keep_alive_time 30
+  mrai 0
+  infilter  [ _extends .filters.permit_all ]
+  outfilter [ _extends .filters.permit_all ]
+]
+
+# =============================== BGP policies ============================== #
+
+filters [
+  permit_all [
+    clause [ precedence 1  predicate []  action [ primary permit ] ]
+  ]
+  deny_all [
+    # zero clauses => deny all routes
+  ]
+]

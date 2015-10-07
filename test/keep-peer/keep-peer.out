@@ -1,0 +1,8 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# KEEP-PEER Validation Test: successful if two TIME=10000 messages
+~#                                              appear below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# TIME=10000	session still exists from Y's point of view
+~# TIME=10000	session still exists from X's point of view

@@ -1,0 +1,71 @@
+# 
+# route-distrib.dml
+#
+# Two directly connected routers, each running BGP, and each representing a
+# different autonomous system.
+#
+#        router          router
+# 
+#        1:1(1) }------{ 2:1(1)
+#
+
+_schema [ _find .schemas.Net ]
+
+Net [
+  
+  frequency 1000000000   # nanosecond simulation frequency
+
+  bgpoptions [
+    validation_test 2      # prints messages associated with this test
+  ]
+
+  # the only difference in the two Nets below is in
+  # Net.router.graph.ProtocolSession.neighbor.as
+  Net [
+    id 1
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 2  address 1(1)  use_return_address 1(1)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ id 1 ]
+    ]
+  ]
+
+  Net [
+    id 2
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [ as 1  address 1(1)  use_return_address 1(1)
+                     _extends .basic_ebgp_neighbor ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ id 1 ]
+    ]
+  ]
+
+  link [ attach 1:1(1) attach 2:1(1) delay 0.01 ]
+]

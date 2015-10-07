@@ -1,0 +1,9 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# DROP-PEER2 Validation Test: successful if two steps printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# 1. AS Y: ended session with AS X
+~# 2. AS Z: received withdrawal of route to AS X
+~#             *** TEST SUCCESSFUL ***
+~#

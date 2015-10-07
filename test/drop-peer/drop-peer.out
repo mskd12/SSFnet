@@ -1,0 +1,10 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# DROP-PEER Validation Test: successful if three steps printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# 1. AS X: received advertisement from AS Y; reset Hold Timer
+~# 2. AS X: Hold Timer expired; sent Notification to AS Y and ended session
+~# 3. AS Y: received Notification from AS X and ended session
+~#             *** TEST SUCCESSFUL ***
+~#

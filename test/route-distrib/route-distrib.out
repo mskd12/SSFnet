@@ -1,0 +1,10 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# ROUTE-DISTRIB Validation Test: successful if three steps printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# 1. AS X: sent route advertisement to AS Y
+~# 2. AS Y: received route advertisement from AS X
+~# 3. AS Y: route information added to local forwarding table
+~#             *** TEST SUCCESSFUL ***
+~#

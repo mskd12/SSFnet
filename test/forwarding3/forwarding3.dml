@@ -1,0 +1,199 @@
+# 
+# forwarding3.dml
+#
+# This network consists of 31 ASes, each with a varying number of routers
+# running BGP.  IP address assignment is completely hierarchical.
+#
+
+_schema [ _find .schemas.Net ]
+
+Net [  # the all-encompassing Net
+
+  frequency 1000000000   # nanosecond simulation frequency
+
+  bgpoptions [
+    validation_test 9      # prints messages associated with this test
+  ]
+
+  # The backbone AS.  It includes all other Nets as children, rather
+  # than having them as siblings, so that IP address assignment is
+  # hierarchical.  This way, BGP can do route aggregation.
+  Net [
+    id 1
+    AS_status boundary
+    ospf_area 0
+
+    # all regional networks connected to the backbone
+    Net [ idrange [ from 1 to 5 ] _extends .regional ]
+
+    # backbone routers
+    router [ idrange [ from 1 to 5 ] _extends .bgp_ospf_rtr ]
+    # even a backbone must have a few hosts here and there
+    host [ idrange [ from 101 to 105 ] _extends .my_cs_host ]
+  
+    # attach routers to hosts
+    link [ attach 1(1)  attach 101(1) delay 0.001 ]
+    link [ attach 2(1)  attach 102(1) delay 0.001 ]
+    link [ attach 3(1)  attach 103(1) delay 0.001 ]
+    link [ attach 4(1)  attach 104(1) delay 0.001 ]
+    link [ attach 5(1)  attach 105(1) delay 0.001 ]
+
+    # attach local routers to local routers (full mesh for IBGP)
+    link [ attach 1(2)  attach 2(2) delay 0.001 ]
+    link [ attach 1(3)  attach 3(2) delay 0.001 ]
+    link [ attach 1(4)  attach 4(2) delay 0.001 ]
+    link [ attach 1(5)  attach 5(2) delay 0.001 ]
+    link [ attach 2(3)  attach 3(3) delay 0.001 ]
+    link [ attach 2(4)  attach 4(3) delay 0.001 ]
+    link [ attach 2(5)  attach 5(3) delay 0.001 ]
+    link [ attach 3(4)  attach 4(4) delay 0.001 ]
+    link [ attach 3(5)  attach 5(4) delay 0.001 ]
+    link [ attach 4(5)  attach 5(5) delay 0.001 ]
+
+    # attach local routers to regional routers
+    link [ attach 1(6)  attach 1:1(5) delay 0.01 ]
+    link [ attach 2(6)  attach 2:1(5) delay 0.01 ]
+    link [ attach 3(6)  attach 3:1(5) delay 0.01 ]
+    link [ attach 4(6)  attach 4:1(5) delay 0.01 ]
+    link [ attach 5(6)  attach 5:1(5) delay 0.01 ]
+  ] # end of backbone network
+
+] # end of all-encompassing Net
+
+
+# regional includes a regional provider's AS, as well as all of the ASes
+# of that provider's clients (ISPs), which in turn contain their own
+# clients, etc.
+regional [
+  AS_status boundary
+  ospf_area 0
+  
+  router [ idrange [ from 1 to 4 ] _extends .bgp_ospf_rtr ]
+  host [ idrange [ from 101 to 104 ] _extends .my_cs_host ]
+
+  Net [ id 1  _extends .ISPx ]
+  Net [ id 2  _extends .ISPy ]
+  Net [ id 3  _extends .ISPz ]
+
+  # attach routers to hosts
+  link [ attach 1(1)  attach 101(1) delay 0.001 ]
+  link [ attach 2(1)  attach 102(1) delay 0.001 ]
+  link [ attach 3(1)  attach 103(1) delay 0.001 ]
+  link [ attach 4(1)  attach 104(1) delay 0.001 ]
+
+  # attach local routers to local routers (full mesh for IBGP)
+  link [ attach 1(2)  attach 2(2) delay 0.001 ]
+  link [ attach 1(3)  attach 3(2) delay 0.001 ]
+  link [ attach 1(4)  attach 4(2) delay 0.001 ]
+  link [ attach 2(3)  attach 3(3) delay 0.001 ]
+  link [ attach 2(4)  attach 4(3) delay 0.001 ]
+  link [ attach 3(4)  attach 4(4) delay 0.001 ]
+
+  # attach local routers to ISP routers
+  link [ attach 2(5)  attach 1:1(4) delay 0.01 ] # ISPx
+  link [ attach 3(5)  attach 2:1(4) delay 0.01 ] # ISPy
+  link [ attach 4(5)  attach 3:1(7) delay 0.01 ] # ISPz
+
+]
+
+# ISP? each include an ISP network, as well as the networks of
+# their clients, if any
+ISPx [
+  AS_status boundary
+  ospf_area 0
+
+  router [ idrange [ from 1 to 3 ] _extends .bgp_ospf_rtr ]
+  host [ idrange [ from 101 to 103 ] _extends .my_cs_host ]
+
+  # attach routers to hosts
+  link [ attach 1(1)  attach 101(1) delay 0.001 ]
+  link [ attach 2(1)  attach 102(1) delay 0.001 ]
+  link [ attach 3(1)  attach 103(1) delay 0.001 ]
+
+  # attach local routers to local routers (full mesh for IBGP)
+  link [ attach 1(2)  attach 2(2) delay 0.001 ]
+  link [ attach 1(3)  attach 3(2) delay 0.001 ]
+  link [ attach 2(3)  attach 3(3) delay 0.001 ]
+]
+
+ISPy [
+  AS_status boundary
+  ospf_area 0
+
+  router [ idrange [ from 1 to 2 ] _extends .bgp_ospf_rtr ]
+  host [ idrange [ from 101 to 102 ] _extends .my_cs_host ]
+  
+  Net [ id 1  _extends .tiny_net ]
+  Net [ id 2  _extends .tiny_net ]
+
+  # attach routers to hosts
+  link [ attach 1(1)  attach 101(1) delay 0.001 ]
+  link [ attach 2(1)  attach 102(1) delay 0.001 ]
+
+  # attach local routers to local routers (full mesh for IBGP)
+  link [ attach 1(2)  attach 2(2)   delay 0.001 ]
+
+  # attach local routers to tiny_net routers
+  link [ attach 1(3)  attach 1:1(2) delay 0.01 ]
+  link [ attach 2(3)  attach 2:1(2) delay 0.01 ]
+]
+
+ISPz [
+  AS_status boundary
+  ospf_area 0
+
+  router [ idrange [ from 1 to 6 ] _extends .bgp_ospf_rtr ]
+  host [ idrange [ from 101 to 106 ] _extends .my_cs_host ]
+  
+  # attach routers to hosts
+  link [ attach 1(1)  attach 101(1) delay 0.001 ]
+  link [ attach 2(1)  attach 102(1) delay 0.001 ]
+  link [ attach 3(1)  attach 103(1) delay 0.001 ]
+  link [ attach 4(1)  attach 104(1) delay 0.001 ]
+  link [ attach 5(1)  attach 105(1) delay 0.001 ]
+  link [ attach 6(1)  attach 106(1) delay 0.001 ]
+
+  # attach local routers to local routers (full mesh for IBGP)
+  link [ attach 1(2)  attach 2(2) delay 0.001 ]
+  link [ attach 1(3)  attach 3(2) delay 0.001 ]
+  link [ attach 1(4)  attach 4(2) delay 0.001 ]
+  link [ attach 1(5)  attach 5(2) delay 0.001 ]
+  link [ attach 1(6)  attach 6(2) delay 0.001 ]
+  link [ attach 2(3)  attach 3(3) delay 0.001 ]
+  link [ attach 2(4)  attach 4(3) delay 0.001 ]
+  link [ attach 2(5)  attach 5(3) delay 0.001 ]
+  link [ attach 2(6)  attach 6(3) delay 0.001 ]
+  link [ attach 3(4)  attach 4(4) delay 0.001 ]
+  link [ attach 3(5)  attach 5(4) delay 0.001 ]
+  link [ attach 3(6)  attach 6(4) delay 0.001 ]
+  link [ attach 4(5)  attach 5(5) delay 0.001 ]
+  link [ attach 4(6)  attach 6(5) delay 0.001 ]
+  link [ attach 5(6)  attach 6(6) delay 0.001 ]
+]
+
+
+# tiny_net is just an AS with one BGP router
+tiny_net [
+  AS_status boundary
+  ospf_area 0
+  
+  router [ id 1 _extends .bgp_ospf_rtr ]
+  host [ id 101 _extends .my_cs_host ]
+
+  # attach routers to hosts
+  link [ attach 1(1)  attach 101(1) delay 0.001 ]
+]
+
+
+# a quiet client/server host with frequency of 1000
+my_cs_host [
+  graph [
+    ProtocolSession [ name ip    use SSF.OS.IP ]
+    ProtocolSession [ name test  use SSF.OS.BGP4.test.App.AppSession
+                                 sender true  dest all  frequency 1000
+                                 receiver true
+                                 verbose false ]
+  ]
+  interface [ id 1 ]
+  route [ dest default interface 1 ]
+]

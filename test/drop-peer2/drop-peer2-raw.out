@@ -1,0 +1,49 @@
+
+CIDR           IP Block            b16           NHI                 
+--             0.0.0.0/26          0x00000000    
+0              0.0.0.16/29         0x00000010    1
+0/0            0.0.0.16/30         0x00000010    
+1              0.0.0.8/29          0x00000008    2
+1/0            0.0.0.8/30          0x00000008    
+2              0.0.0.0/29          0x00000000    3
+2/0            0.0.0.0/30          0x00000000    
+3              0.0.0.28/30         0x0000001c    1:1(1) 2:1(1) 
+4              0.0.0.24/30         0x00000018    2:1(2) 3:1(1) 
+
+NHI Addr            CIDR Level          IP Address Block    % util    
+--                  --                  0.0.0.0/26          53.125    
+1                   0                   0.0.0.16/29         75.0      
+2                   1                   0.0.0.8/29          75.0      
+3                   2                   0.0.0.0/29          75.0      
+
+** 		 Using specified 1.0ns clock resolution
+
+
+--- Phase I: construct table of routers and hosts
+
+
+--- Phase II: connect Point-To-Point links
+
+
+--- Phase III: add static routes
+## Net config: 3 routers and hosts
+## Elapsed time: 0.518 seconds
+** Running for 1000000000000 clock ticks (== 1000.0 seconds sim time)
+----------------------------------------------------------------------
+|	Raceway SSF 1.0b09 (2 May 2001)
+|	 Proprietary Internal Development Release
+|	(c)2000,2001 Renesys Corporation
+----------------------------------------------------------------------
+
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# DROP-PEER2 Validation Test: successful if two steps printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# 1. AS Y: ended session with AS X
+~# 2. AS Z: received withdrawal of route to AS X
+~#             *** TEST SUCCESSFUL ***
+~#
+----------------------------------------------------------------------
+| 1 timelines, 5 barriers, 6402 events, 660 ms, 16 Kevt/s
+----------------------------------------------------------------------

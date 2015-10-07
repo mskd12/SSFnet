@@ -1,0 +1,10 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# RECONNECT Validation Test: successful if three steps printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# 1. AS Y: ended session with AS X
+~# 2. AS Y: reestablished session with AS X
+~# 3. AS Z: received second advertisement of route to AS X
+~#             *** TEST SUCCESSFUL ***
+~#

@@ -1,0 +1,84 @@
+# 
+# keep-peer.dml
+#
+# Two ASes, each with one router.  The routers are directly connected,
+# and are each running BGP.
+#
+#        router          router
+# 
+#        1:1(1) }------{ 2:1(1)
+#
+
+_schema [ _find .schemas.Net ]
+
+Net [ # the all-encompassing Net
+  
+  frequency 1000000000   # nanosecond simulation frequency
+
+  bgpoptions [
+    validation_test 1      # prints messages associated with this test
+  ]
+
+  Net [
+    id 1
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [
+            as 2  address 1(1)  use_return_address 1(1)
+            # Below are the default Hold and Keep Alive Timer values as
+            # suggested in the BGP RFC.  They're the simulation defaults,
+            # too, just reiterated here for clarity.
+            hold_time 90  keep_alive_time 30  mrai 30
+            infilter  [ _extends .filters.permit_all ]
+            outfilter [ _extends .filters.permit_all ]
+          ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ id 1 ]
+    ]
+  ]
+
+  Net [
+    id 2
+    AS_status boundary
+    router [
+      id 1
+      graph [
+        ProtocolSession [
+          name bgp  use  SSF.OS.BGP4.BGPSession
+          autoconfig false
+          connretry_time 120  min_as_orig_time 15
+          reflector false
+          neighbor [
+            as 1  address 1(1)  use_return_address 1(1)
+            # Below are the default Hold and Keep Alive Timer values as
+            # suggested in the BGP RFC.  They're the simulation defaults,
+            # too, just reiterated here for clarity.
+            hold_time 90  keep_alive_time 30  mrai 30
+            infilter  [ _extends .filters.permit_all ]
+            outfilter [ _extends .filters.permit_all ]
+          ]
+        ]
+        ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
+        ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
+        ProtocolSession [ name ip     use SSF.OS.IP ]
+      ]
+      interface [ id 0  virtual true ]
+      interface [ id 1 ]
+    ]
+  ]
+
+  link [ attach 1:1(1) attach 2:1(1) ]
+
+] # end of all-encompassing Net

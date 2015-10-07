@@ -1,0 +1,294 @@
+
+CIDR           IP Block            b16           NHI                 
+--             0.0.0.0/21          0x00000000    
+0              0.0.4.48/28         0x00000430    0
+0/0            0.0.4.52/30         0x00000434    0:1(1) 0:101(1) 
+0/1            0.0.4.48/30         0x00000430    
+1              0.0.4.32/28         0x00000420    1
+1/0            0.0.4.36/30         0x00000424    1:1(1) 1:101(1) 
+1/1            0.0.4.32/30         0x00000420    
+2              0.0.4.16/28         0x00000410    2
+2/0            0.0.4.20/30         0x00000414    2:1(1) 2:101(1) 
+2/1            0.0.4.16/30         0x00000410    
+3              0.0.3.0/24          0x00000300    3
+3/0            0.0.3.128/28        0x00000380    3:0
+3/0/0          0.0.3.132/30        0x00000384    3:0:1(1) 3:0:101(1) 
+3/0/1          0.0.3.128/30        0x00000380    
+3/1            0.0.3.0/25          0x00000300    3:1
+3/1/0          0.0.3.32/28         0x00000320    3:1:0
+3/1/0/0        0.0.3.36/30         0x00000324    3:1:0:1(1) 3:1:0:101(1) 
+3/1/0/1        0.0.3.32/30         0x00000320    
+3/1/1          0.0.3.16/28         0x00000310    3:1:1
+3/1/1/0        0.0.3.20/30         0x00000314    3:1:1:1(1) 3:1:1:101(1) 
+3/1/1/1        0.0.3.16/30         0x00000310    
+3/1/2          0.0.3.0/28          0x00000300    3:1:2
+3/1/2/0        0.0.3.4/30          0x00000304    3:1:2:1(1) 3:1:2:101(1) 
+3/1/2/1        0.0.3.0/30          0x00000300    
+3/1/3          0.0.3.64/30         0x00000340    3:1:1(1) 3:1:101(1) 
+3/1/4          0.0.3.60/30         0x0000033c    3:1:1(3) 3:1:0:1(2) 
+3/1/5          0.0.3.56/30         0x00000338    3:1:1(4) 3:1:1:1(2) 
+3/1/6          0.0.3.52/30         0x00000334    3:1:1(5) 3:1:2:1(2) 
+3/1/7          0.0.3.48/30         0x00000330    
+3/2            0.0.3.156/30        0x0000039c    3:1(1) 3:101(1) 
+3/3            0.0.3.152/30        0x00000398    3:1(4) 3:0:1(2) 
+3/4            0.0.3.148/30        0x00000394    3:1(5) 3:1:1(2) 
+3/5            0.0.3.144/30        0x00000390    
+4              0.0.4.0/28          0x00000400    4
+4/0            0.0.4.4/30          0x00000404    4:1(1) 4:101(1) 
+4/1            0.0.4.0/30          0x00000400    
+5              0.0.0.0/23          0x00000000    5
+5/0            0.0.0.192/28        0x000000c0    5:0
+5/0/0          0.0.0.196/30        0x000000c4    5:0:1(1) 5:0:101(1) 
+5/0/1          0.0.0.192/30        0x000000c0    
+5/1            0.0.0.176/28        0x000000b0    5:1
+5/1/0          0.0.0.180/30        0x000000b4    5:1:1(1) 5:1:101(1) 
+5/1/1          0.0.0.176/30        0x000000b0    
+5/2            0.0.0.160/28        0x000000a0    5:2
+5/2/0          0.0.0.164/30        0x000000a4    5:2:1(1) 5:2:101(1) 
+5/2/1          0.0.0.160/30        0x000000a0    
+5/3            0.0.0.144/28        0x00000090    5:3
+5/3/0          0.0.0.148/30        0x00000094    5:3:1(1) 5:3:101(1) 
+5/3/1          0.0.0.144/30        0x00000090    
+5/4            0.0.0.128/28        0x00000080    5:4
+5/4/0          0.0.0.132/30        0x00000084    5:4:1(1) 5:4:101(1) 
+5/4/1          0.0.0.128/30        0x00000080    
+5/5            0.0.0.112/28        0x00000070    5:5
+5/5/0          0.0.0.116/30        0x00000074    5:5:1(1) 5:5:101(1) 
+5/5/1          0.0.0.112/30        0x00000070    
+5/6            0.0.0.96/28         0x00000060    5:6
+5/6/0          0.0.0.100/30        0x00000064    5:6:1(1) 5:6:101(1) 
+5/6/1          0.0.0.96/30         0x00000060    
+5/7            0.0.0.80/28         0x00000050    5:7
+5/7/0          0.0.0.84/30         0x00000054    5:7:1(1) 5:7:101(1) 
+5/7/1          0.0.0.80/30         0x00000050    
+5/8            0.0.0.64/28         0x00000040    5:8
+5/8/0          0.0.0.68/30         0x00000044    5:8:1(1) 5:8:101(1) 
+5/8/1          0.0.0.64/30         0x00000040    
+5/9            0.0.0.48/28         0x00000030    5:9
+5/9/0          0.0.0.52/30         0x00000034    5:9:1(1) 5:9:101(1) 
+5/9/1          0.0.0.48/30         0x00000030    
+5/10           0.0.0.32/28         0x00000020    5:10
+5/10/0         0.0.0.36/30         0x00000024    5:10:1(1) 5:10:101(1) 
+5/10/1         0.0.0.32/30         0x00000020    
+5/11           0.0.0.16/28         0x00000010    5:11
+5/11/0         0.0.0.20/30         0x00000014    5:11:1(1) 5:11:101(1) 
+5/11/1         0.0.0.16/30         0x00000010    
+5/12           0.0.0.0/28          0x00000000    5:12
+5/12/0         0.0.0.4/30          0x00000004    5:12:1(1) 5:12:101(1) 
+5/12/1         0.0.0.0/30          0x00000000    
+5/13           0.0.0.252/30        0x000000fc    5:0:1(3) 5:1:1(2) 
+5/14           0.0.0.248/30        0x000000f8    5:0:1(4) 5:2:1(2) 
+5/15           0.0.0.244/30        0x000000f4    5:0:1(5) 5:3:1(2) 
+5/16           0.0.0.240/30        0x000000f0    5:1:1(3) 5:4:1(2) 
+5/17           0.0.0.236/30        0x000000ec    5:1:1(4) 5:5:1(2) 
+5/18           0.0.0.232/30        0x000000e8    5:1:1(5) 5:6:1(2) 
+5/19           0.0.0.228/30        0x000000e4    5:3:1(3) 5:7:1(2) 
+5/20           0.0.0.224/30        0x000000e0    5:3:1(4) 5:9:1(2) 
+5/21           0.0.0.220/30        0x000000dc    5:3:1(5) 5:8:1(2) 
+5/22           0.0.0.216/30        0x000000d8    5:9:1(3) 5:10:1(2) 
+5/23           0.0.0.212/30        0x000000d4    5:9:1(4) 5:11:1(2) 
+5/24           0.0.0.208/30        0x000000d0    5:9:1(5) 5:12:1(2) 
+6              0.0.2.0/24          0x00000200    7
+6/0            0.0.2.128/28        0x00000280    7:0
+6/0/0          0.0.2.132/30        0x00000284    7:0:1(1) 7:0:101(1) 
+6/0/1          0.0.2.128/30        0x00000280    
+6/1            0.0.2.112/28        0x00000270    7:1
+6/1/0          0.0.2.116/30        0x00000274    7:1:1(1) 7:1:101(1) 
+6/1/1          0.0.2.112/30        0x00000270    
+6/2            0.0.2.96/28         0x00000260    7:2
+6/2/0          0.0.2.100/30        0x00000264    7:2:1(1) 7:2:101(1) 
+6/2/1          0.0.2.96/30         0x00000260    
+6/3            0.0.2.80/28         0x00000250    7:3
+6/3/0          0.0.2.84/30         0x00000254    7:3:1(1) 7:3:101(1) 
+6/3/1          0.0.2.80/30         0x00000250    
+6/4            0.0.2.64/28         0x00000240    7:4
+6/4/0          0.0.2.68/30         0x00000244    7:4:1(1) 7:4:101(1) 
+6/4/1          0.0.2.64/30         0x00000240    
+6/5            0.0.2.48/28         0x00000230    7:5
+6/5/0          0.0.2.52/30         0x00000234    7:5:1(1) 7:5:101(1) 
+6/5/1          0.0.2.48/30         0x00000230    
+6/6            0.0.2.32/28         0x00000220    7:6
+6/6/0          0.0.2.36/30         0x00000224    7:6:1(1) 7:6:101(1) 
+6/6/1          0.0.2.32/30         0x00000220    
+6/7            0.0.2.16/28         0x00000210    7:7
+6/7/0          0.0.2.20/30         0x00000214    7:7:1(1) 7:7:101(1) 
+6/7/1          0.0.2.16/30         0x00000210    
+6/8            0.0.2.0/28          0x00000200    7:8
+6/8/0          0.0.2.4/30          0x00000204    7:8:1(1) 7:8:101(1) 
+6/8/1          0.0.2.0/30          0x00000200    
+6/9            0.0.2.168/30        0x000002a8    7:0:1(3) 7:2:1(2) 
+6/10           0.0.2.164/30        0x000002a4    7:0:1(4) 7:3:1(2) 
+6/11           0.0.2.160/30        0x000002a0    7:1:1(3) 7:4:1(2) 
+6/12           0.0.2.156/30        0x0000029c    7:1:1(4) 7:5:1(2) 
+6/13           0.0.2.152/30        0x00000298    7:1:1(5) 7:6:1(2) 
+6/14           0.0.2.148/30        0x00000294    7:4:1(3) 7:7:1(2) 
+6/15           0.0.2.144/30        0x00000290    7:4:1(4) 7:8:1(2) 
+7              0.0.4.104/30        0x00000468    0:1(2) 1:1(2) 
+8              0.0.4.100/30        0x00000464    0:1(3) 4:1(2) 
+9              0.0.4.96/30         0x00000460    1:1(3) 2:1(2) 
+10             0.0.4.92/30         0x0000045c    2:1(3) 3:1(2) 
+11             0.0.4.88/30         0x00000458    2:1(4) 4:1(3) 
+12             0.0.4.84/30         0x00000454    3:1(3) 4:1(4) 
+13             0.0.4.80/30         0x00000450    1:1(4) 5:0:1(2) 
+14             0.0.4.76/30         0x0000044c    4:1(5) 7:0:1(2) 
+15             0.0.4.72/30         0x00000448    4:1(6) 7:1:1(2) 
+16             0.0.4.68/30         0x00000444    5:4:1(3) 7:6:1(3) 
+17             0.0.4.64/30         0x00000440    5:12:1(3) 3:0:1(3) 
+
+NHI Addr            CIDR Level          IP Address Block    % util    
+--                  --                  0.0.0.0/21          55.37109375
+0                   0                   0.0.4.48/28         62.5      
+1                   1                   0.0.4.32/28         62.5      
+2                   2                   0.0.4.16/28         62.5      
+3                   3                   0.0.3.0/24          63.28125  
+3:0                 3/0                 0.0.3.128/28        62.5      
+3:1                 3/1                 0.0.3.0/25          54.6875   
+3:1:0               3/1/0               0.0.3.32/28         62.5      
+3:1:1               3/1/1               0.0.3.16/28         62.5      
+3:1:2               3/1/2               0.0.3.0/28          62.5      
+4                   4                   0.0.4.0/28          62.5      
+5                   5                   0.0.0.0/23          50.390625 
+5:0                 5/0                 0.0.0.192/28        62.5      
+5:1                 5/1                 0.0.0.176/28        62.5      
+5:2                 5/2                 0.0.0.160/28        62.5      
+5:3                 5/3                 0.0.0.144/28        62.5      
+5:4                 5/4                 0.0.0.128/28        62.5      
+5:5                 5/5                 0.0.0.112/28        62.5      
+5:6                 5/6                 0.0.0.96/28         62.5      
+5:7                 5/7                 0.0.0.80/28         62.5      
+5:8                 5/8                 0.0.0.64/28         62.5      
+5:9                 5/9                 0.0.0.48/28         62.5      
+5:10                5/10                0.0.0.32/28         62.5      
+5:11                5/11                0.0.0.16/28         62.5      
+5:12                5/12                0.0.0.0/28          62.5      
+7                   6                   0.0.2.0/24          67.96875  
+7:0                 6/0                 0.0.2.128/28        62.5      
+7:1                 6/1                 0.0.2.112/28        62.5      
+7:2                 6/2                 0.0.2.96/28         62.5      
+7:3                 6/3                 0.0.2.80/28         62.5      
+7:4                 6/4                 0.0.2.64/28         62.5      
+7:5                 6/5                 0.0.2.48/28         62.5      
+7:6                 6/6                 0.0.2.32/28         62.5      
+7:7                 6/7                 0.0.2.16/28         62.5      
+7:8                 6/8                 0.0.2.0/28          62.5      
+
+** 		 Using specified 1.0ns clock resolution
+
+
+--- Phase I: construct table of routers and hosts
+Warning: interface 0:1(4) is unconfigured and has no assigned IP address
+Warning: interface 0:1(5) is unconfigured and has no assigned IP address
+Warning: interface 0:1(6) is unconfigured and has no assigned IP address
+Warning: interface 1:1(5) is unconfigured and has no assigned IP address
+Warning: interface 1:1(6) is unconfigured and has no assigned IP address
+Warning: interface 2:1(5) is unconfigured and has no assigned IP address
+Warning: interface 2:1(6) is unconfigured and has no assigned IP address
+Warning: interface 3:0:1(4) is unconfigured and has no assigned IP address
+Warning: interface 3:0:1(5) is unconfigured and has no assigned IP address
+Warning: interface 3:0:1(6) is unconfigured and has no assigned IP address
+Warning: interface 3:1:0:1(3) is unconfigured and has no assigned IP address
+Warning: interface 3:1:0:1(4) is unconfigured and has no assigned IP address
+Warning: interface 3:1:0:1(5) is unconfigured and has no assigned IP address
+Warning: interface 3:1:0:1(6) is unconfigured and has no assigned IP address
+Warning: interface 3:1:1:1(3) is unconfigured and has no assigned IP address
+Warning: interface 3:1:1:1(4) is unconfigured and has no assigned IP address
+Warning: interface 3:1:1:1(5) is unconfigured and has no assigned IP address
+Warning: interface 3:1:1:1(6) is unconfigured and has no assigned IP address
+Warning: interface 3:1:2:1(3) is unconfigured and has no assigned IP address
+Warning: interface 3:1:2:1(4) is unconfigured and has no assigned IP address
+Warning: interface 3:1:2:1(5) is unconfigured and has no assigned IP address
+Warning: interface 3:1:2:1(6) is unconfigured and has no assigned IP address
+Warning: interface 3:1:1(6) is unconfigured and has no assigned IP address
+Warning: interface 3:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:0:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:1:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:2:1(3) is unconfigured and has no assigned IP address
+Warning: interface 5:2:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:2:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:2:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:3:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:4:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:4:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:4:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:5:1(3) is unconfigured and has no assigned IP address
+Warning: interface 5:5:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:5:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:5:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:6:1(3) is unconfigured and has no assigned IP address
+Warning: interface 5:6:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:6:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:6:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:7:1(3) is unconfigured and has no assigned IP address
+Warning: interface 5:7:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:7:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:7:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:8:1(3) is unconfigured and has no assigned IP address
+Warning: interface 5:8:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:8:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:8:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:9:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:10:1(3) is unconfigured and has no assigned IP address
+Warning: interface 5:10:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:10:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:10:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:11:1(3) is unconfigured and has no assigned IP address
+Warning: interface 5:11:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:11:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:11:1(6) is unconfigured and has no assigned IP address
+Warning: interface 5:12:1(4) is unconfigured and has no assigned IP address
+Warning: interface 5:12:1(5) is unconfigured and has no assigned IP address
+Warning: interface 5:12:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:0:1(5) is unconfigured and has no assigned IP address
+Warning: interface 7:0:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:1:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:2:1(3) is unconfigured and has no assigned IP address
+Warning: interface 7:2:1(4) is unconfigured and has no assigned IP address
+Warning: interface 7:2:1(5) is unconfigured and has no assigned IP address
+Warning: interface 7:2:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:3:1(3) is unconfigured and has no assigned IP address
+Warning: interface 7:3:1(4) is unconfigured and has no assigned IP address
+Warning: interface 7:3:1(5) is unconfigured and has no assigned IP address
+Warning: interface 7:3:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:4:1(5) is unconfigured and has no assigned IP address
+Warning: interface 7:4:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:5:1(3) is unconfigured and has no assigned IP address
+Warning: interface 7:5:1(4) is unconfigured and has no assigned IP address
+Warning: interface 7:5:1(5) is unconfigured and has no assigned IP address
+Warning: interface 7:5:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:6:1(4) is unconfigured and has no assigned IP address
+Warning: interface 7:6:1(5) is unconfigured and has no assigned IP address
+Warning: interface 7:6:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:7:1(3) is unconfigured and has no assigned IP address
+Warning: interface 7:7:1(4) is unconfigured and has no assigned IP address
+Warning: interface 7:7:1(5) is unconfigured and has no assigned IP address
+Warning: interface 7:7:1(6) is unconfigured and has no assigned IP address
+Warning: interface 7:8:1(3) is unconfigured and has no assigned IP address
+Warning: interface 7:8:1(4) is unconfigured and has no assigned IP address
+Warning: interface 7:8:1(5) is unconfigured and has no assigned IP address
+Warning: interface 7:8:1(6) is unconfigured and has no assigned IP address
+
+
+--- Phase II: connect Point-To-Point links
+
+
+--- Phase III: add static routes
+## Net config: 64 routers and hosts
+## Elapsed time: 0.778 seconds
+** Running for 1900000000000 clock ticks (== 1900.0 seconds sim time)
+----------------------------------------------------------------------
+|	Raceway SSF 1.0b09 (2 May 2001)
+|	 Proprietary Internal Development Release
+|	(c)2000,2001 Renesys Corporation
+----------------------------------------------------------------------
+
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# FORWARDING2 Validation Test: successful if ALL MESSAGES RECEIVED appears
+~#                              below and no TEST FAILED messages follow it
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# ALL MESSAGES RECEIVED
+~#
+----------------------------------------------------------------------
+| 1 timelines, 5 barriers, 153051 events, 10938 ms, 15 Kevt/s
+----------------------------------------------------------------------

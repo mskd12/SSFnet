@@ -1,0 +1,10 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# IBGP Validation Test: success if 1 internal and 2 external msgs rcvd
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# AS Z: received external update message from AS Y
+~# AS Y, router 2: received internal update
+~# AS Z: received external update message from AS Y
+~#             *** TEST SUCCESSFUL ***
+~#

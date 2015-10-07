@@ -1,0 +1,15 @@
+~#
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~# REFLECTION Validation Test:  successful if 7 lines plus "TEST
+~#                              SUCCESSFUL" message printed below
+~# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+~#
+~# AS X: advertised route
+~# RR1:  reflecting route
+~# RR1:  reflecting route
+~# RR1:  reflecting route
+~# RR2:  reflecting route
+~# AS Y: received route advertisement
+~# AS Z: received route advertisement
+~#             *** TEST SUCCESSFUL ***
+~#
