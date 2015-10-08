@@ -247,7 +247,7 @@ my_cs_host_specific [
   graph [
     ProtocolSession [ name ip    use SSF.OS.IP ]
     ProtocolSession [ name test  use SSF.OS.BGP4.test.App.AppSession
-                                 sender true  dest 0:101(1) frequency 500 freq 0.0001
+                                 sender true  dest 7:101(1) frequency 490 freq 0.001
                                  receiver true  verbose true ]
   ]
   interface [ id 1 ]

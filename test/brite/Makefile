@@ -13,8 +13,7 @@ DICTIONARY = ./dictionary.dml
 
 TESTNAME = isd1
 TESTSUPPORT = isd1_networks
-RUNTIME = 550
+RUNTIME = 530
 
 all:
-	@rm -f test-raw.out
 	$(JAVA) SSF.Net.Net $(RUNTIME) $(TESTNAME).dml $(TESTSUPPORT).dml $(DICTIONARY) $(SCHEMAS) > test-raw.out 2>&1

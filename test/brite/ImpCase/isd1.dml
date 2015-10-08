@@ -1,0 +1,58 @@
+
+#BRITE topology output to DML
+
+
+_schema [ _find .schemas.Net]
+
+Net [ 
+	frequency 1000000000 	 #1 nanosecond time resolution
+	randomstream [
+	   generator "MersenneTwister"
+	   stream "startseed"
+	   reproducibility_level "timeline"
+	]
+
+	bgpoptions [
+		show_snd_update true
+		show_rcv_update true
+		show_fwd_tables true
+		show_transclose true
+		validation_test 17		
+	]
+
+
+	#NOTE:  Interfaces 0-5 are available for custom use.
+
+	Net [ id 0	  _extends .isd1_networks.as0.Net ]
+	Net [ id 1	  _extends .isd1_networks.as1.Net ]
+	Net [ id 2	  _extends .isd1_networks.as2.Net ]
+	Net [ id 3	  _extends .isd1_networks.as3.Net ]
+	Net [ id 4	  _extends .isd1_networks.as4.Net ]
+	Net [ id 5	  _extends .isd1_networks.as5.Net ]
+	Net [ id 6	  _extends .isd1_networks.as6.Net ]
+	Net [ id 7	  _extends .isd1_networks.as7.Net ]
+	Net [ id 8	  _extends .isd1_networks.as8.Net ]
+	Net [ id 9	  _extends .isd1_networks.as9.Net ]
+
+
+	 # links connecting the respective AS border routers.
+
+	link [ attach 0:0(6)  attach 1:0(6)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 0:0(7)  attach 2:0(6)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 1:0(7)  attach 2:0(7)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 3:0(6)  attach 0:0(8)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 3:0(7)  attach 1:0(8)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 4:0(6)  attach 1:0(9)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 4:0(7)  attach 3:0(8)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 5:0(6)  attach 0:0(9)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 5:0(7)  attach 4:0(8)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 6:0(6)  attach 1:0(10)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 6:0(7)  attach 2:0(8)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 7:0(6)  attach 1:0(11)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 7:0(7)  attach 4:0(9)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 8:0(6)  attach 1:0(12)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 8:0(7)  attach 2:0(9)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 9:0(6)  attach 2:0(10)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+	link [ attach 9:0(7)  attach 5:0(8)  delay 0.001 ]  #_extends .dictionary.Links.InterASLink ]
+
+] #end of net
