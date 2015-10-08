@@ -64,6 +64,7 @@ public class Global {
   /** Indicates that the 'reconnect' validation test is being performed. */
   public static final int RECONNECT     = 15;
   public static final int FORWARDING4   = 16;
+  public static final int BRITE         = 17;
 
   // . . . . . . . . . processing delay model constants . . . . . . . . . . //
   /** Indicates that no processing delay model is in use. */
@@ -1485,6 +1486,30 @@ public class Global {
         break;
       }
       break;
+    case BRITE:
+      switch (msgnum) {
+      case 0: // any introductory test messages
+        System.out.println("\n" + pf + "\n" + hr);
+        System.out.println(pf + " SCION Validation Test: " +
+                           "successful if ALL MESSAGES RECEIVED appears");
+        System.out.println(pf + "                              " +
+                           "below and no TEST FAILED messages follow it");
+        System.out.println(hr + "\n" + pf);
+        break;
+      case 1:
+        numdata[0]++;
+        // if (numdata[0]%(32*31)==0) {
+        System.out.println(numdata[0] + " Messages received\n");
+          // each of the 32 hosts sends one message to every other host
+          // System.out.println(pf + " ALL MESSAGES RECEIVED\n" + pf);
+        // } 
+        // else if (numdata[0] > 32*31) {
+        //   System.out.println(failuremsg +
+        //                      "   (too many messages were received)");
+        // }
+        break;
+      }
+      break;      
     case WITHDRAWALS:
       str = msgnum + ". ";
       switch (msgnum) {

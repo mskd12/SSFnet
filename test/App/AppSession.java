@@ -390,6 +390,7 @@ public class AppSession extends ProtocolSession {
         bgp.debug.valid(Global.FORWARDING2, 1);
         bgp.debug.valid(Global.FORWARDING3, 1);
         bgp.debug.valid(Global.FORWARDING4, 1);
+        bgp.debug.valid(Global.BRITE, 1);
       }
     } else {
       if (verbose) {

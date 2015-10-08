@@ -17,6 +17,7 @@ Net [
 		show_rcv_update true
 		show_fwd_tables true
 		show_transclose true
+		validation_test 17
 	]
 
 
