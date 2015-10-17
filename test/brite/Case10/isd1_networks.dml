@@ -24,7 +24,7 @@ isd1_networks [
 	   ospf_area 0
 	  router [ id 0 
 	   interface [ idrange [from 6 to 12] ]  # interfaces to connect to neighboring ASs.
-	   _extends .CrashRouter  ]
+	   _extends .dictionary.CrashRouter  ]
 	   host [ id 101  _extends .dictionary.my_cs_host_receiver ]
 	   link [ attach 0(2) attach 101(1) delay 0.001 ] # attach router to host
 	 ] #end of router-net
@@ -129,51 +129,3 @@ isd1_networks [
 
 
 ] #end of net definitions
-
-CrashRouter [    
-    interface [idrange [from 0 to 5]  ] #reserved to connect to hosts within this AS
-    graph [  
-		-- ProtocolSession [ name crasher  use SSF.OS.BGP4.Widgets.BGPCrasher
-		-- 							 waitTime 500 randomize false frequency 700 crashProb 1.0
-		-- 							 deadTime 500 stableTime 700]
-         ProtocolSession [ name bgp    use SSF.OS.BGP4.BGPSession  autoconfig true ]
-         ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
-     ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
-     ProtocolSession [ name ip     use SSF.OS.IP debug true]
-    ]
-    ]
-
--- ConfigRouter1 [
---     interface [idrange [from 0 to 5]  ] #reserved to connect to hosts within this AS
---     graph [
---     ProtocolSession [
---       name bgp  use  SSF.OS.BGP4.BGPSession
---       autoconfig false
---       connretry_time 120  min_as_orig_time 15
---       reflector false
---       neighbor [
---         as 0  address 0(9)  use_return_address 0(6)
---         hold_time 90  keep_alive_time 200  mrai 30
---         infilter  [ _extends .filters.permit_all ]
---         outfilter [ _extends .filters.permit_all ]
---       ]
---       neighbor [
---         as 4  address 0(8)  use_return_address 0(7)
---         hold_time 90  keep_alive_time 30  mrai 30
---         infilter  [ _extends .filters.permit_all ]
---         outfilter [ _extends .filters.permit_all ]
---       ]
---       neighbor [
---         as 9  address 0(7)  use_return_address 0(8)
---         hold_time 90  keep_alive_time 30  mrai 30
---         infilter  [ _extends .filters.permit_all ]
---         outfilter [ _extends .filters.permit_all ]
---       ]
---     ]
---     ProtocolSession [ name socket use SSF.OS.Socket.socketMaster ]
---     ProtocolSession [ name tcp    use SSF.OS.TCP.tcpSessionMaster ]
---     ProtocolSession [ name ip     use SSF.OS.IP ]
---     ]
-
---     ]
-
