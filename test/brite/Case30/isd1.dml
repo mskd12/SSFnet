@@ -20,6 +20,10 @@ Net [
 		 show_fwd_tables true
 		 show_transclose true
 		 use_nhi_addressing true
+		 show_set_hold false
+		 show_set_mrai false
+		 show_hold_exp false
+		 show_mrai_exp false
 		 validation_test 17
 	]
 

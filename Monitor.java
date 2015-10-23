@@ -1630,7 +1630,7 @@ public class Monitor {
     }
 
     if (msg.wds != null) {
-      if (msg.wds.size() > 255) {
+      if (msg.wds.size() > 1255) {
         throw new Error("wds too big: " + msg.wds.size());
       }
       bytes[bindex++] = (byte)msg.wds.size(); // the number of withdrawn routes
